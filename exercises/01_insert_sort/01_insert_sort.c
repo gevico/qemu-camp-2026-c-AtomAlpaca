@@ -7,20 +7,14 @@ typedef struct {
     int score;
 } Student;
 
-void move(Student students[], int l, int r) {
-  for (int i = r; i >= l; --i) {
-    students[i + 1] = students[i];
-  }
-  return ;
-}
-
 void insertion_sort(Student students[], int n) {
-  for (int i = 2; i <= n; ++i) {
+  for (int i = 0; i < n; ++i) {
     Student tmp = students[i];
-    for (int j = 1; j < i; ++j) {
+    for (int j = 0; j < i; ++j) {
       if (tmp.score > students[j].score) {
-	move(students, j, i - 1);
+	for (int k = i - 1; k >= j; --k) { students[k + 1] = students[k]; }
 	students[j] = tmp;
+	break;
       }
     }
   }
