@@ -11,10 +11,17 @@ typedef struct {
 } Student;
 
 Student students[MAX_STUDENTS];
+Student tmp[MAX_STUDENTS];
 
 void quick_sort(int left, int right) {
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+  if (left == right) { return ; }
+  int p = students[left].score, mid = left, _mid = left;
+  for (int i = left + 1; i <= right; ++i) { if (students[i].score >= p) { tmp[mid] = students[i]; ++mid; } }
+  _mid = mid; tmp[mid] = students[left]; ++mid;
+  for (int i = left + 1; i <= right; ++i) { if (students[i].score <  p) { tmp[mid] = students[i]; ++mid; } }
+  for (int i = left; i <= right; ++i) { students[i] = tmp[i]; }
+  quick_sort(left, _mid - 1); quick_sort(_mid + 1, right);
+  return ;
 }
 
 int main(void) {

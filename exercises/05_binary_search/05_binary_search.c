@@ -15,8 +15,15 @@ Student students[MAX_STUDENTS];
 int n;
 
 int binary_search(const char *target_name) {
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+  int l = 1, r = n;
+  while (1) {
+    if (l == r) { return l; }
+    int mid = (l + r) >> 1;
+    if (strcmp(target_name, students[mid].name) == 0) { return mid; }
+    if (strcmp(target_name, students[mid].name) >  0) { return r = mid - 1; }
+    if (strcmp(target_name, students[mid].name) <  0) { return l = mid + 1; }
+  }
+  return -1;
 }
 
 int main(void) {

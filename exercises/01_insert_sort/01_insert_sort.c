@@ -7,9 +7,23 @@ typedef struct {
     int score;
 } Student;
 
+void move(Student students[], int l, int r) {
+  for (int i = r; i >= l; --i) {
+    students[i + 1] = students[i];
+  }
+  return ;
+}
+
 void insertion_sort(Student students[], int n) {
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+  for (int i = 2; i <= n; ++i) {
+    Student tmp = students[i];
+    for (int j = 1; j < i; ++j) {
+      if (tmp.score > students[j].score) {
+	move(students, j, i - 1);
+	students[j] = tmp;
+      }
+    }
+  }
 }
 
 int main(void) {
